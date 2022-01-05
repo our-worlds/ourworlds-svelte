@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>swap</title>
+
+    <script type="text/javascript" src="https://widgets.rubic.exchange/iframe/bundle.min.js"></script>
+</head>
+<body>
+    <div id="rubic-widget-root"></div>
+
+    <script defer type="text/javascript">
+        // describe widget configuration and saving to a global variable for future use
+        var configuration = {
+            from: 'ETH',
+            to: 'AVAX',
+            fromChain: 'ETH',
+            toChain: 'AVALANCHE',
+            amount: 1,
+            iframe: 'flex',
+            hideSelectionFrom: false,
+            hideSelectionTo: true,
+            theme: 'dark',
+            background: '#28372e',
+            injectTokens: {
+                eth: ['0xd123575d94a7ad9bff3ad037ae9d4d52f41a7518'],
+                bsc: ['0x8aed24bf6e0247be51c57d68ad32a176bf86f4d9']
+            },
+            slippagePercent: {
+                instantTrades: 2,
+                crossChain: 5
+            }
+        }
+
+        // prevent accidental changes to the object, for example, when re-creating a widget for another theme
+        Object.freeze(configuration);
+
+        // create widget
+        rubicWidget.init(configuration);
+    </script>
+</body>
+</html>
