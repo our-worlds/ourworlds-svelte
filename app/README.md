@@ -1,4 +1,4 @@
-# Our Worlds client
+# ourworlds client
 
 ## Development environment
 
@@ -17,8 +17,10 @@ git switch -c initial origin/initial
 
 Add `.env` file with the following entries in /app folder:
 
+```
 CLIENT_MORALIS_SERVER_URL=
 CLIENT_MORALIS_APP_ID=
+```
 
 Install dependencies:
 
