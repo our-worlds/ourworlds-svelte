@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="description" content="" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+		<link rel="icon" href="/favicon.png" />
+		<link rel="shortcut icon" href="/favicon.png" />
+		<title>Our Worlds</title>
+
+		<script src="https://github.com/WalletConnect/walletconnect-monorepo/releases/download/1.4.1/web3-provider.min.js" defer></script>
+		<script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js" defer></script>
+		<script src="https://unpkg.com/moralis@0.0.184/dist/moralis.js" async></script>
+
+		<script src="https://cdn.jsdelivr.net/npm/ipfs/dist/index.min.js" defer></script>
+
+		<style>
+			/* CSS reset from https://www.joshwcomeau.com/css/custom-css-reset/ */
+
+			*, *::before, *::after {
+				box-sizing: border-box;
+			}
+
+			* {
+				margin: 0;
+			}
+
+			html, body {
+				height: 100%;
+			}
+
+			body {
+				line-height: 1.5;
+				font-family: "arial", sans-serif;
+			}
+
+			img, picture, video, canvas, svg {
+				display: block;
+				max-width: 100%;
+			}
+
+			input, button, textarea, select {
+				font: inherit;
+			}
+
+			ul {
+				margin: none;
+			}
+			p, h1, h2, h3, h4, h5, h6 {
+				overflow-wrap: break-word;
+			}
+
+			#root, #__next {
+				isolation: isolate;
+			}
+
+			#svelte {
+				position: relative;
+			}
+		</style>
+
+		%svelte.head%
+	</head>
+	<body>
+		<div id="svelte">%svelte.body%</div>
+	</body>
+</html>

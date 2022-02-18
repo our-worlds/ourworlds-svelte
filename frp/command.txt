@@ -1,0 +1,5 @@
+Ganache
+./frpc -c frpc-g.ini
+
+Hardhat
+./frpc -c frpc-h.ini
