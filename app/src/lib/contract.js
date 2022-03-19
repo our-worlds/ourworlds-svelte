@@ -28,6 +28,9 @@ export async function getURI( currentUri, currentTokens, userEthAddress ){
         });
     });
 
+    if (tokens.length === 0)
+        return { uri, tokens };
+
     const optionsFunc = {
         contractAddress: CONTRACT_ADDRESS,
         functionName: "tokenURI",
