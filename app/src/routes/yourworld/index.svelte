@@ -7,7 +7,6 @@
 
     import Globe from 'globe.gl';
     import { globeIcon, markerIcon, userIcon } from "$lib/appicons.js";
-    import { getSupportInfo } from "prettier";
 
     import { getURI, setNewURI } from "$lib/contract.js";
 
@@ -24,22 +23,15 @@
 
     const style = "z-index: 5; background-color: #090A0A";
 
+    let initGlobeImageUrl = "/texture.png";
     let tokens = [];
     let uri = {};
     let provider;
     let globeIpfsFile;
     let globeElement;
-    const N = 50;
-    const gData = [...Array(N).keys()].map(() => ({
-        lat: (Math.random() - 0.5) * 180,
-        lng: (Math.random() - 0.5) * 360,
-        size: Math.random() / 5,
-        color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
-    }));
     let globe;
 
     $: level = 0;
-
 
     onMount( async () => {
         provider = window.Moralis;
@@ -47,14 +39,14 @@
         const r = await getURI();
         tokens = r.tokens;
         uri = r.uri;
-        console.log(uri);
-        level = uri.level
+        console.log("uri: ", uri);
+        if (uri.level)
+            level = uri.level
+        if (uri.image)
+            initGlobeImageUrl = uri.image;
         globe = Globe()
-        .globeImageUrl(uri.image)
-        .backgroundColor('#00000000')
-        .pointsData(gData)
-        .pointAltitude('size')
-        .pointColor('color')          
+        .globeImageUrl(initGlobeImageUrl)
+        .backgroundColor('#00000000')   
         (globeElement);
         globe.pointOfView({altitude: 6});
         globe.renderer().setClearColor( 0x000000, 0 );
@@ -65,7 +57,6 @@
     $: {
         if (level==5) {
             globe.globeImageUrl('https://unpkg.com/three-globe@2.21.3/example/img/earth-blue-marble.jpg')
-            // change globe data
         }
         if (level==10){
             globe.bumpImageUrl('https://unpkg.com/three-globe@2.21.3/example/img/earth-topology.png')
@@ -84,7 +75,6 @@
             .arcDashLength(() => Math.random())
             .arcDashGap(() => Math.random())
             .arcDashAnimateTime(() => Math.random() * 4000 + 500)
-            // .pointsData(null)
         }
         if (level==15){
             const shieldRing = { lat: 90, lng: 0 };
@@ -100,6 +90,7 @@
     }
 
     async function levelUp() {
+        // TODO re-integrate level up functionality
         // const r = await setNewURI(uri, tokens);
         // tokens = r.tokens;
         // uri = r.uri;
