@@ -38,8 +38,6 @@ or start the server and open the app in a new browser tab
 
 - IPFS
 - Moralis
-- FRP
-  - [Used to connect Moralis with Ganache local server](https://www.youtube.com/watch?v=aRRS394is1U)
 
 ## Deploy Smart Contract
 
