@@ -9,7 +9,7 @@
     import { authStore, isAuthenticated } from "$lib/auth.js";
 
     import tokenMetadata from '/src/token/metadata.json';
-    import upgradeableAbi from '/src/token/upgradeable.json';
+    import { upgradableAbi, CONTRACT_ADDRESS } from "$lib/contract.js";
         
     import Icon from "@components/Icon.svelte";
     import { nftIcon,
@@ -41,7 +41,6 @@
 
     const color = "white"; // spinner color
 
-
     let provider, payment;
     let isMetamaskInstalled, unsubscribeChainChanged, unsubscribeAccountChanged;
 
@@ -53,8 +52,6 @@
     $: mintingNftState = NFT_STATE.UNMINTED;
     $: isMember = provider?.User.current()?.isMember;
     $: $pageCount = isMember ? 1 : 5;
-
-    
 
     $: {
         if ($currentPage === 5) {
@@ -68,7 +65,7 @@
             const options = {
                 chain: "avalanche testnet",
                 address: provider?.User.current()?.get('ethAddress'),
-                token_address: "0x7cC8a5B05bAf9b39AFd2d115C7291fA33b3ecC01"
+                token_address: CONTRACT_ADDRESS
             };
 
             provider?.Web3API.account.getNFTsForContract(options)
@@ -174,9 +171,9 @@
         tokenMetadata.description = 'Dynamic NFT representing owners reputation in "Our Worlds" platform';
 
         const options = {
-            contractAddress: "0xF4f7124b560F1816aF25A47F4b0d91673C1CEf5C",
+            contractAddress: CONTRACT_ADDRESS,
             functionName: "mintToken",
-            abi: upgradeableAbi,
+            abi: upgradableAbi,
             params: {
                 owner: user.get('ethAddress'),
                 metadataURI: `data:text/plain,${encodeURIComponent(JSON.stringify(tokenMetadata))}`
