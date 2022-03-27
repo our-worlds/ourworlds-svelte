@@ -2,35 +2,23 @@
 
 Turning kind deeds into freedom.
 
-## Setup
+## Technologies Used
 
-Clone repository and set the feature branch
+- IPFS
+- Moralis
 
-```bash
-clone https://github.com/our-worlds/ourworlds-svelte.git
+## Running the web client
 
-cd .\ourworlds-svelte\
-```
+For instruction on running the svelte client, please vist [app/README.md](./app/README.md).
 
-Add `.env` file with the following entries in `/app` folder:
+## Deploy Smart Contract
 
-```bash
-CLIENT_MORALIS_SERVER_URL=
-CLIENT_MORALIS_APP_ID=
-```
+To deploy to the hardhat network:
 
-Install dependencies:
+`npx hardhat run .\scripts\deploy.js`
 
-```bash
-cd app
-npm i
-```
+To deploy to the Fuji network:
 
-## Usage
+`npx hardhat run .\scripts\deploy.js --network fuji`
 
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+**NOTE**: `PRIVATE_KEY` needs to be defined in the top-level `.env` for the account that will deploy the contract. See `.env.example` for reference.

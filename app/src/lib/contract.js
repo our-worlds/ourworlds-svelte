@@ -1,8 +1,11 @@
-import upgradeableAbi from '/src/token/upgradeable.json';
+import upgradableWorld from '/src/token/UpgradableWorld.json';
+import contractAddress from '/src/token/contract-address.json';
+
+export const upgradableAbi = upgradableWorld.abi;
 
 export const globeTextureUrl = "https://ipfs.io/ipfs/QmV3w8D47cCJgjtcYuJF1LjLW5zpYUWU5Y7M21tzSyYtPE?filename=texture.png";
 
-export const CONTRACT_ADDRESS = "0xF4f7124b560F1816aF25A47F4b0d91673C1CEf5C";
+export const CONTRACT_ADDRESS = contractAddress.address;
 
 export async function getURI( currentUri, currentTokens, userEthAddress ){
     const provider = window.Moralis;
@@ -25,11 +28,10 @@ export async function getURI( currentUri, currentTokens, userEthAddress ){
         });
     });
 
-
     const optionsFunc = {
         contractAddress: CONTRACT_ADDRESS,
         functionName: "tokenURI",
-        abi: upgradeableAbi,
+        abi: upgradableAbi,
         params: {
             tokenId: tokens[0]
         },
@@ -57,7 +59,7 @@ export async function setNewURI( currentUri, currentTokens ) {
     const options = {
         contractAddress: CONTRACT_ADDRESS,
         functionName: "setTokenURI",
-        abi: upgradeableAbi,
+        abi: upgradableAbi,
         params: {
             tokenId: currentTokens[currentTokens.length-1],
             metadataURI: `data:text/plain,${encodeURIComponent(JSON.stringify(tokenMetadata))}`

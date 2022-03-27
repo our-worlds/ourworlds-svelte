@@ -6,20 +6,11 @@ Svelte is used for development. Check the [docs](https://kit.svelte.dev/docs) fo
 
 ## Setup
 
-Clone repository and set the feature branch
+In `/app`, rename `.env.example` to `.env` and replace `SERVER_URL` & `APP_ID` with your Moralis serverUrl and appId, respectively.
 
 ```bash
-clone https://github.com/our-worlds/ourworlds-svelte.git
-
-cd .\ourworlds-svelte\
-git switch -c initial origin/initial
-```
-
-Add `.env` file with the following entries in /app folder:
-
-```
-CLIENT_MORALIS_SERVER_URL=
-CLIENT_MORALIS_APP_ID=
+CLIENT_MORALIS_SERVER_URL=SERVER_URL
+CLIENT_MORALIS_APP_ID=APP_ID
 ```
 
 Install dependencies:
@@ -31,12 +22,13 @@ npm i
 
 ## Usage
 
-```bash
-npm run dev
+To start the development server
 
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
+`npm run dev`
+
+or start the server and open the app in a new browser tab
+
+`npm run dev -- --open`
 
 ## Building
 
