@@ -6,8 +6,13 @@
     "build": "svelte-kit build",
     "package": "svelte-kit package",
     "preview": "svelte-kit preview",
-    "lint": "prettier --ignore-path .gitignore --check --plugin-search-dir=. . && eslint --ignore-path .gitignore .",
-    "format": "prettier --ignore-path .gitignore --write --plugin-search-dir=. ."
+    "lint": "prettier --ignore-path .gitignore --check ./src/**/*.{js,svelte,ts} ./*.{ts,cjs,js} --plugin-search-dir=. && eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .eslintignore",
+    "lint:fix": "prettier --check ./src/**/*.{js,svelte,ts} ./*.{ts,cjs,js} --plugin-search-dir=. && eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .eslintignore",
+    "format": "prettier --ignore-path .gitignore --write ./src/**/*.{js,svelte,ts} ./*.{ts,cjs,js} --plugin-search-dir=.",
+    "eslint": "eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .eslintignore",
+    "eslint:fix": "eslint ./src/**/*.{js,svelte,ts} --ignore-path .gitignore .eslintignore --fix",
+    "check": "svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-check --tsconfig ./tsconfig.json --watch"
   },
   "devDependencies": {
     "@sveltejs/adapter-auto": "^1.0.0-next.11",
@@ -29,6 +34,7 @@
     "prettier": "^2.5.1",
     "prettier-plugin-svelte": "^2.6.0",
     "svelte": "^3.46.3",
+    "svelte-check": "^2.4.6",
     "svelte-clipboard": "^1.0.0",
     "svelte-web3": "^3.3.2",
     "ts-node": "^10.7.0",
