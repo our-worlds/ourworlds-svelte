@@ -26,6 +26,8 @@
 		"allowJs": true,
 		"checkJs": true,
 		"baseUrl": ".",
+		"outDir": "dist",
+		"types": ["node", "node-fetch"],
 		"paths": {
 			"$lib": ["src/lib"],
 			"$lib/*": ["src/lib/*"],
@@ -38,4 +40,15 @@
 		"src/**/*.js",
 		"src/**/*.svelte"
 	],
+	"exclude": [
+		"node_modules/*",
+		"dist/*",
+		".svelte/*",
+		".svelte-kit/*",
+		"build/*",
+		"coverage/*",
+		"functions/*",
+		"static/*",
+		"scripts/*",
+	]
 }
