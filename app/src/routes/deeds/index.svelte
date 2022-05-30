@@ -126,7 +126,6 @@
 </style>
 
 <script>
-  import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
 
   import Deed from '$lib/moralisobjects/deed.js';
@@ -139,6 +138,7 @@
 
   import { globeIcon, markerIcon, searchIcon, userIcon } from '$lib/appicons.js';
   import Icon from '@components/Icon.svelte';
+  import { goto } from '$app/navigation';
 
   const props = {
     color: '#979C9E',

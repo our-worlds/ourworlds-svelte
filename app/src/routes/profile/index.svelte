@@ -141,7 +141,6 @@
 
 <script>
   import * as Pancake from '@sveltejs/pancake';
-  import { goto } from '$app/navigation';
   import { onMount } from 'svelte';
 
   import NavBar from '@components/NavBar.svelte';
@@ -151,18 +150,15 @@
 
   import { globeIcon, markerIcon, userIcon } from '$lib/appicons.js';
   import { authStore, isAuthenticated, user } from '$lib/auth.js';
+  import { goto } from '$app/navigation';
 
   let provider;
   let closest;
   let pastDeeds = [];
 
-  const zeroAddress =
-    '0x' +
-    range(0, 32)
-      .map(() => {
-        return '0';
-      })
-      .join('');
+  const zeroAddress = `0x${range(0, 32)
+    .map(() => '0')
+    .join('')}`;
 
   $: ethAddress = $isAuthenticated ? $user.get('ethAddress') : zeroAddress;
 
@@ -181,24 +177,18 @@
   const data_range = range(1, 12);
   // use https://stackoverflow.com/questions/6451655/how-to-convert-python-datetime-dates-to-decimal-float-years
   // to convert datetime to indexable value
-  const data_impact = data_range.map((d) => {
-    return {
-      x: d,
-      y: d * (0.3 + Math.random()),
-    };
-  });
-  const data_rewards = data_range.map((d) => {
-    return {
-      x: d,
-      y: d * (0.3 + Math.random()),
-    };
-  });
-  const data_xp = data_range.map((d) => {
-    return {
-      x: d,
-      y: d * (0.3 + Math.random()),
-    };
-  });
+  const data_impact = data_range.map((d) => ({
+    x: d,
+    y: d * (0.3 + Math.random()),
+  }));
+  const data_rewards = data_range.map((d) => ({
+    x: d,
+    y: d * (0.3 + Math.random()),
+  }));
+  const data_xp = data_range.map((d) => ({
+    x: d,
+    y: d * (0.3 + Math.random()),
+  }));
 
   onMount(() => {
     provider = window.Moralis;
@@ -213,7 +203,7 @@
   }
 
   function shortEthAddress(ethAddress) {
-    return ethAddress.slice(0, 5) + '...' + ethAddress.slice(-4);
+    return `${ethAddress.slice(0, 5)}...${ethAddress.slice(-4)}`;
   }
 
   async function searchPastDeeds() {
@@ -222,7 +212,7 @@
       const query = user.relation('pastDeeds').query();
       console.log(query);
       try {
-        let result = await query.find();
+        const result = await query.find();
         console.log(result);
         if (result.length > 0) {
           pastDeeds = result;

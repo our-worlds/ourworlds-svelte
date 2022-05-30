@@ -106,12 +106,12 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import { currentPage, pageCount } from '$lib/stateStore.js';
 
   import Icon from '@components/Icon.svelte';
   import { lensIcon, thumbsUpIcon, dollarIcon, pictureIcon, wingsIcon } from '$lib/appicons.js';
+  import { goto } from '$app/navigation';
 
   const props = {
     color: '#fff',

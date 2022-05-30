@@ -194,7 +194,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import { tempDeed } from '$lib/stateStore.js';
 
@@ -205,6 +204,7 @@
 
   import { crossIcon, downIcon, upIcon, markerIcon, plusIcon, minusIcon } from '$lib/appicons.js';
   import Icon from '@components/Icon.svelte';
+  import { goto } from '$app/navigation';
 
   let provider;
   let showMenu = false;
@@ -246,7 +246,7 @@
   }
 
   function handleSteps(event) {
-    const target = event.target;
+    const { target } = event;
 
     if (
       target.dataset.action === '+' ||

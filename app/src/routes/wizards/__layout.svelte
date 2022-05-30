@@ -52,13 +52,13 @@
 </style>
 
 <script>
-  import { goto } from '$app/navigation';
   import { currentPage, pageCount } from '$lib/stateStore.js';
 
   import NavBar from '@components/NavBar.svelte';
 
   import Icon from '@components/Icon.svelte';
   import { backIcon, nextIcon, crossIcon } from '$lib/appicons.js';
+  import { goto } from '$app/navigation';
 
   const props = {
     color: '#fff',

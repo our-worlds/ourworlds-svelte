@@ -36,14 +36,15 @@
 </style>
 
 <script>
-  import { browser } from '$app/env';
   import { createEventDispatcher } from 'svelte';
 
   import L from 'leaflet';
+  import { browser } from '$app/env';
 
   const dispatch = createEventDispatcher();
 
-  let map, marker;
+  let map;
+  let marker;
   let markerGroup = null;
 
   function placeMarker(lat, lon, detail) {
@@ -69,7 +70,7 @@
       });
 
       marker.addTo(map);
-      //marker.bindPopup("<b>Create new deed</b><br>I am a popup.").openPopup();
+      // marker.bindPopup("<b>Create new deed</b><br>I am a popup.").openPopup();
 
       marker.on('dragend', () => dispatch('mapClick', marker.getLatLng()));
     } else {
@@ -81,7 +82,7 @@
     if (markerGroup !== null) markerGroup.clearLayers();
     // TODO: Bring back the loop when the deeds contain real locations
     received?.forEach((data) => {
-      //const data = received[0];
+      // const data = received[0];
       const markerLat = data?.coordinates?.latitude || map.getCenter().lat;
       const markerLon = data?.coordinates?.longitude || map.getCenter().lng;
       const detail = data || 'No detail available';

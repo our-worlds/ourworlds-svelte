@@ -110,7 +110,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import NavBar from '@components/NavBar.svelte';
   import Footer from '@components/Footer.svelte';
@@ -119,6 +118,7 @@
   import { globeIcon, markerIcon, userIcon } from '$lib/appicons.js';
 
   import { getURI, setNewURI } from '$lib/contract.js';
+  import { goto } from '$app/navigation';
 
   const props = {
     color: '#6C7072',

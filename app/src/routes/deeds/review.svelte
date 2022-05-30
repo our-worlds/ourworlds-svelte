@@ -48,7 +48,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import Deed from '$lib/moralisobjects/deed.js';
   import DeedDisplay from '@components/DeedDisplay.svelte';
@@ -58,6 +57,7 @@
   import { authStore, isAuthenticated } from '$lib/auth.js';
 
   import { tempDeed } from '$lib/stateStore.js';
+  import { goto } from '$app/navigation';
 
   const color = 'black';
 

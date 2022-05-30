@@ -10,12 +10,12 @@ export const CONTRACT_ADDRESS = contractAddress.address;
 
 export async function getURI(currentUri, currentTokens, userEthAddress) {
   const provider = window.Moralis;
-  let uri = currentUri ? currentUri : {};
+  let uri = currentUri || {};
 
-  let tokens = currentTokens ? currentTokens : [];
+  const tokens = currentTokens || [];
 
   await provider.enableWeb3();
-  let optionsNft = {
+  const optionsNft = {
     chain: 'avalanche testnet',
     address: userEthAddress,
     token_address: CONTRACT_ADDRESS,
@@ -50,7 +50,7 @@ export async function getURI(currentUri, currentTokens, userEthAddress) {
 export async function setNewURI(currentUri, currentTokens) {
   const provider = window.Moralis;
 
-  let tokenMetadata = currentUri; // get first token
+  const tokenMetadata = currentUri; // get first token
   tokenMetadata.image = globeTextureUrl;
   tokenMetadata.xp += 100;
   if (tokenMetadata.xp >= tokenMetadata.maxXp) {

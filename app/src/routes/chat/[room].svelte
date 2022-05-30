@@ -138,7 +138,6 @@
         https://docs.libp2p.io/concepts/publish-subscribe/
 -->
 <script>
-  import { page } from '$app/stores';
   import { onDestroy, onMount, tick } from 'svelte';
 
   import Deed from '$lib/moralisobjects/deed.js';
@@ -146,6 +145,7 @@
   import Icon from '@components/Icon.svelte';
   import { backIcon } from '$lib/appicons.js';
   import { authStore, isAuthenticated } from '$lib/auth.js';
+  import { page } from '$app/stores';
 
   const deedId = $page.params.room;
 
@@ -155,7 +155,7 @@
   ];
 
   const ipfsOptions = {
-    repo: 'ok' + Math.random(), // random so we get a new peerid every time, useful for testing
+    repo: `ok${Math.random()}`, // random so we get a new peerid every time, useful for testing
     relay: {
       enabled: true,
       hop: {
@@ -187,9 +187,12 @@
   let deed;
   let provider;
 
-  let keepInterval, checkInterval, peerInterval, peerCountTimeout;
-  let chatContainer,
-    chats = [];
+  let keepInterval;
+  let checkInterval;
+  let peerInterval;
+  let peerCountTimeout;
+  let chatContainer;
+  let chats = [];
 
   let lastAlive = 0; // last keep-alive we saw from a relay
   let lastPeer = 0; // last keep-alive we saw from another peer
@@ -220,7 +223,8 @@
       if (deeds.length > 0) {
         deed = deeds[0];
         return startChat();
-      } else console.error('no deed found');
+      }
+      console.error('no deed found');
     }
   });
 
@@ -252,7 +256,7 @@
     chats = [
       ...chats,
       {
-        type: type,
+        type,
         from: data.from,
         message: data.message,
       },
@@ -335,12 +339,12 @@
     if (addr === 'keep-alive') return;
 
     const peer = addr.split('/')[9];
-    console.log('Peer: ' + peer, 'Me: ' + me);
+    console.log(`Peer: ${peer}`, `Me: ${me}`);
     if (peer === me) return;
 
     // get a list of peers
     const peers = await ipfs.swarm.peers();
-    for (let i in peers) {
+    for (const i in peers) {
       // if we're already connected to the peer, don't bother doing a circuit connection
       if (peers[i].peer === peer) {
         return;
@@ -368,7 +372,7 @@
       return;
     }
     lastBootstrap = now;
-    for (let i in bootstraps) {
+    for (const i in bootstraps) {
       if (reconnect) {
         try {
           await ipfs.swarm.disconnect(bootstraps[i]);
@@ -394,8 +398,8 @@
     joinchan('global');
 
     // publish and subscribe to keepalive to help keep the sockets open
-    await ipfs.pubsub.subscribe(prefix + 'keepalive');
-    keepInterval = setInterval(() => send('1', prefix + 'keepalive'), 4000);
+    await ipfs.pubsub.subscribe(`${prefix}keepalive`);
+    keepInterval = setInterval(() => send('1', `${prefix}keepalive`), 4000);
     checkInterval = setInterval(checkalive, 1000);
 
     // process announcements over the relay network, and publish our own keep-alives to keep the channel alive

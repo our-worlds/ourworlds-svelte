@@ -197,7 +197,6 @@
 
 <script>
   import { onDestroy, onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import { Jellyfish } from 'svelte-loading-spinners';
   import Clipboard from 'svelte-clipboard';
@@ -210,6 +209,7 @@
 
   import Icon from '@components/Icon.svelte';
   import { nftIcon, chatBubbleIcon, giftIcon, markerPinIcon, starIcon } from '$lib/appicons.js';
+  import { goto } from '$app/navigation';
 
   const NFT_STATE = Object.freeze({
     UNMINTED: 'unminted',
@@ -233,15 +233,18 @@
 
   const color = 'white'; // spinner color
 
-  let provider, payment;
-  let isMetamaskInstalled, unsubscribeChainChanged, unsubscribeAccountChanged;
+  let provider;
+  let payment;
+  let isMetamaskInstalled;
+  let unsubscribeChainChanged;
+  let unsubscribeAccountChanged;
 
-  let firstName = '',
-    lastName = '',
-    email = '';
+  let firstName = '';
+  let lastName = '';
+  let email = '';
 
   let validWallet = null;
-  let tokens = [];
+  const tokens = [];
 
   $: mintingNftState = NFT_STATE.UNMINTED;
   $: isMember = provider?.User.current()?.isMember;
@@ -301,7 +304,7 @@
   });
 
   async function buyTokens() {
-    let response = await provider.Plugins.fiat.buy(
+    const response = await provider.Plugins.fiat.buy(
       {},
       { disableTriggers: true, defaultAmount: 10 },
     );
@@ -404,10 +407,9 @@
   }
   function shortEthAddress(ethAddress) {
     if (ethAddress) {
-      return ethAddress.slice(0, 5) + '...' + ethAddress.slice(-4);
-    } else {
-      return null;
+      return `${ethAddress.slice(0, 5)}...${ethAddress.slice(-4)}`;
     }
+    return null;
   }
 </script>
 

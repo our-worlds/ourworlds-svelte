@@ -86,13 +86,13 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import Map from '@components/Map.svelte';
   import NavBar from '@components/NavBar.svelte';
 
   import { tempDeed } from '$lib/stateStore.js';
   import { backIcon } from '$lib/appicons.js';
+  import { goto } from '$app/navigation';
 
   const props = {
     color: '#979C9E',
@@ -108,9 +108,9 @@
   let mapComponent;
   let provider;
 
-  let addressValue = '',
-    latitude = '',
-    longitude = '';
+  let addressValue = '';
+  let latitude = '';
+  let longitude = '';
 
   onMount(() => {
     provider = window.Moralis;

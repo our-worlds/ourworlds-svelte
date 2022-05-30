@@ -81,10 +81,11 @@
 <script>
   import { onMount } from 'svelte';
 
-  import { goto } from '$app/navigation';
   import MainIcon from '@components/MainIcon.svelte';
+  import { goto } from '$app/navigation';
+
   const firstTimeToken = 'intro_done';
-  let firstTime =
+  const firstTime =
     !localStorage.getItem(firstTimeToken) || localStorage.getItem(firstTimeToken) === 'false';
 
   let provider;

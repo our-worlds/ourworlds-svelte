@@ -95,8 +95,6 @@
 
 <script>
   import { onMount, onDestroy } from 'svelte';
-  import { page } from '$app/stores';
-  import { goto } from '$app/navigation';
 
   import { authStore, isAuthenticated } from '$lib/auth.js';
   import { share } from '$lib/common.js';
@@ -110,6 +108,8 @@
 
   import { backIcon, shareIcon } from '$lib/appicons.js';
   import Player from '$lib/moralisobjects/player.js';
+  import { goto } from '$app/navigation';
+  import { page } from '$app/stores';
 
   const deedId = $page.params.id;
 
@@ -135,8 +135,8 @@
   let participants = [];
   let userState = null;
   let userSubscription;
-  let tokens = [];
-  let uri = {};
+  const tokens = [];
+  const uri = {};
 
   onMount(async () => {
     provider = window.Moralis;
@@ -165,7 +165,7 @@
         deed = result;
         checkUserState();
 
-        //console.log('deed retrieved', result)
+        // console.log('deed retrieved', result)
       },
       (error) => {
         console.error('Retrieving deed failed', error);
@@ -224,7 +224,7 @@
   }
 
   function handleDelete() {
-    let user = provider.User.current();
+    const user = provider.User.current();
 
     const creatorRelation = user.relation('createdDeeds');
     creatorRelation.remove(deed);
@@ -237,7 +237,7 @@
   }
 
   async function handleCancel() {
-    let user = provider.User.current();
+    const user = provider.User.current();
     user.unset('isRequestingCompletion');
     user.unset('participatingDeed');
     user.save();
@@ -250,7 +250,7 @@
   }
 
   async function handleParticipate() {
-    let user = provider.User.current();
+    const user = provider.User.current();
 
     await user.fetch();
 
@@ -268,7 +268,7 @@
 
   async function handleParticipantRequest() {
     console.log('completing deed');
-    let user = provider?.User.current();
+    const user = provider?.User.current();
 
     await user.fetch();
 

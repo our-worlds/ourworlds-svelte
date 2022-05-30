@@ -55,7 +55,6 @@
 
 <script>
   import { onMount } from 'svelte';
-  import { goto } from '$app/navigation';
 
   import Deed from '$lib/moralisobjects/deed';
   import Map from '@components/Map.svelte';
@@ -64,6 +63,7 @@
   import Icon from '@components/Icon.svelte';
   import { backIcon, sprocketIcon, searchIcon, filterIcon } from '$lib/appicons.js';
   import BottomSheet from '@components/BottomSheet.svelte';
+  import { goto } from '$app/navigation';
 
   const props = {
     color: '#979C9E',
@@ -77,9 +77,10 @@
   const sprocketProps = { ...props, ds: sprocketIcon };
   const filterProps = { ...props, ds: filterIcon };
 
-  let mapComponent, deedsComponent;
+  let mapComponent;
+  let deedsComponent;
   let provider;
-  let open = true;
+  const open = true;
   let deedList = [];
 
   onMount(() => {
@@ -105,7 +106,7 @@
       fetch(`https://geocode.xyz/${event.target.value}?json=1&auth=622585789648730666409x45089`)
         .then((response) => {
           if (!response.ok) {
-            throw new Error('Network response was not OK: ' + response.status);
+            throw new Error(`Network response was not OK: ${response.status}`);
           }
           return response.json();
         })
@@ -127,7 +128,7 @@
     query.limit(20);
 
     try {
-      let result = await query.find();
+      const result = await query.find();
       if (result.length > 0) {
         deedList = result;
         mapComponent.setDeeds(deedList);

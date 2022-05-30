@@ -87,7 +87,7 @@
       direction = Math.abs(deltaY(e)) > Math.abs(deltaX(e)) ? 'vertical' : 'horizontal';
     }
     if (deltaY(e) < 0 && direction === 'vertical') {
-      dialog.style.setProperty('--b', deltaY(e) + maxHeight + 'px');
+      dialog.style.setProperty('--b', `${deltaY(e) + maxHeight}px`);
       backdrop.style.setProperty('--o', (1 + deltaY(e) / dialog.clientHeight) * backdropOpacity);
     }
   };
@@ -99,11 +99,11 @@
     direction = null;
   };
   $: if (dialog && backdrop) {
-    dialog.style.setProperty('--s', speed + 's');
-    backdrop.style.setProperty('--s', speed + 's');
+    dialog.style.setProperty('--s', `${speed}s`);
+    backdrop.style.setProperty('--s', `${speed}s`);
   }
   $: if (dialog && backdrop && !direction) {
-    dialog.style.setProperty('--b', open ? maxHeight + 'px' : -dialog.clientHeight + 'px');
+    dialog.style.setProperty('--b', open ? `${maxHeight}px` : `${-dialog.clientHeight}px`);
     backdrop.style.setProperty('--o', open ? backdropOpacity : 0);
   }
 </script>
