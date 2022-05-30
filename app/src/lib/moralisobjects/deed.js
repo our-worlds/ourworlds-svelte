@@ -1,167 +1,165 @@
-
-
 export default class Deed extends window.Moralis.Object {
-    constructor() {
-        super('Deed');
+  constructor() {
+    super('Deed');
 
-        this.category = "";
-        this.title = "";
-        this.description = "";
-        this.address = "";
-        this.timeframe = {
-            start: '',
-            end: ''
-        }
-        this.steps = [];
-        this.coordinates = new window.Moralis.GeoPoint();
-        this.isActive = true;
-        this.allowChat = false;
-        this.participants = null;
-    }
+    this.category = '';
+    this.title = '';
+    this.description = '';
+    this.address = '';
+    this.timeframe = {
+      start: '',
+      end: '',
+    };
+    this.steps = [];
+    this.coordinates = new window.Moralis.GeoPoint();
+    this.isActive = true;
+    this.allowChat = false;
+    this.participants = null;
+  }
 
-    get title() {
-        return this.get('title');
-    }
+  get title() {
+    return this.get('title');
+  }
 
-    set title(value) {
-        this.set('title', value);
-    }
+  set title(value) {
+    this.set('title', value);
+  }
 
-    get pictures() {
-        return this.get('pictures');
-    }
+  get pictures() {
+    return this.get('pictures');
+  }
 
-    set pictures(value) {
-        this.set('pictures', value);
-    }
+  set pictures(value) {
+    this.set('pictures', value);
+  }
 
-    get category() {
-        return this.get('category');
-    }
+  get category() {
+    return this.get('category');
+  }
 
-    set category(value) {
-        this.set('category', value);
-    }
+  set category(value) {
+    this.set('category', value);
+  }
 
-    get description() {
-        return this.get('description');
-    }
+  get description() {
+    return this.get('description');
+  }
 
-    set description(value) {
-        this.set('description', value);
-    }
+  set description(value) {
+    this.set('description', value);
+  }
 
-    get address() {
-        return this.get('address');
-    }
+  get address() {
+    return this.get('address');
+  }
 
-    set address(value) {
-        this.set('address', value);
-    }
+  set address(value) {
+    this.set('address', value);
+  }
 
-    get coordinates() {
-        return this.get('coordinates');
-    }
+  get coordinates() {
+    return this.get('coordinates');
+  }
 
-    set coordinates(value) {
-        this.set('coordinates', value);
-    }
+  set coordinates(value) {
+    this.set('coordinates', value);
+  }
 
-    get deliverables() {
-        return this.get('deliverables');
-    }
+  get deliverables() {
+    return this.get('deliverables');
+  }
 
-    set deliverables(value) {
-        this.set('deliverables', value);
-    }
+  set deliverables(value) {
+    this.set('deliverables', value);
+  }
 
-    get timeframe() {
-        return this.get('timeframe');
-    }
+  get timeframe() {
+    return this.get('timeframe');
+  }
 
-    set timeframe(value) {
-        this.set('timeframe', value)
-    }
+  set timeframe(value) {
+    this.set('timeframe', value);
+  }
 
-    get hasReward() {
-        return this.get('hasReward');
-    }
+  get hasReward() {
+    return this.get('hasReward');
+  }
 
-    set hasReward(value) {
-        this.set('hasReward', value)
-    }
+  set hasReward(value) {
+    this.set('hasReward', value);
+  }
 
-    get creatorId() {
-        return this.get('creatorId');
-    }
+  get creatorId() {
+    return this.get('creatorId');
+  }
 
-    set creatorId(value) {
-        this.set('creatorId', value)
-    }
+  set creatorId(value) {
+    this.set('creatorId', value);
+  }
 
-    get participants() {
-        return this.get('participants');
-    }
+  get participants() {
+    return this.get('participants');
+  }
 
-    set participants(value) {
-        this.set('participants', value)
-    }
+  set participants(value) {
+    this.set('participants', value);
+  }
 
-    get maxParticipant() {
-        return this.get('maxParticipant');
-    }
+  get maxParticipant() {
+    return this.get('maxParticipant');
+  }
 
-    set maxParticipant(value) {
-        this.set('maxParticipant', value)
-    }
+  set maxParticipant(value) {
+    this.set('maxParticipant', value);
+  }
 
-    get sponsors() {
-        return this.get('sponsors');
-    }
+  get sponsors() {
+    return this.get('sponsors');
+  }
 
-    set sponsors(value) {
-        this.set('sponsors', value)
-    }
+  set sponsors(value) {
+    this.set('sponsors', value);
+  }
 
-    get criticality() {
-        return this.get('criticality');
-    }
+  get criticality() {
+    return this.get('criticality');
+  }
 
-    set criticality(value) {
-        this.set('criticality', value)
-    }
+  set criticality(value) {
+    this.set('criticality', value);
+  }
 
-    get difficulty() {
-        return this.get('difficulty');
-    }
+  get difficulty() {
+    return this.get('difficulty');
+  }
 
-    set difficulty(value) {
-        this.set('difficulty', value)
-    }
+  set difficulty(value) {
+    this.set('difficulty', value);
+  }
 
-    get steps() {
-        return this.get('steps');
-    }
+  get steps() {
+    return this.get('steps');
+  }
 
-    set steps(value) {
-        this.set('steps', value)
-    }
+  set steps(value) {
+    this.set('steps', value);
+  }
 
-    get isActive() {
-        return this.get('isActive');
-    }
+  get isActive() {
+    return this.get('isActive');
+  }
 
-    set isActive(value) {
-        this.set('isActive', value)
-    }
+  set isActive(value) {
+    this.set('isActive', value);
+  }
 
-    get allowChat() {
-        return this.get('allowChat')
-    }
+  get allowChat() {
+    return this.get('allowChat');
+  }
 
-    set allowChat(value) {
-        this.set('allowChat', value)
-    }
+  set allowChat(value) {
+    this.set('allowChat', value);
+  }
 }
 
 window.Moralis.Object.registerSubclass('Deed', Deed);
