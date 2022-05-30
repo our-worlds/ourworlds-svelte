@@ -56,6 +56,7 @@
     "globe.gl": "^2.24.1",
     "leaflet": "^1.7.1",
     "lint-staged": "^12.3.7",
+    "moralis": "^0.0.184",
     "svelte-loading-spinners": "^0.1.7"
   }
 }
