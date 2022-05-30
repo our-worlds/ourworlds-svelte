@@ -78,17 +78,19 @@
   }
 </style>
 
-<script>
+<script lang="ts">
   import { onMount } from 'svelte';
 
   import MainIcon from '@components/MainIcon.svelte';
   import { goto } from '$app/navigation';
 
+  import type { Moralis } from 'moralis';
+
   const firstTimeToken = 'intro_done';
   const firstTime =
     !localStorage.getItem(firstTimeToken) || localStorage.getItem(firstTimeToken) === 'false';
 
-  let provider;
+  let provider: Moralis;
 
   onMount(() => {
     provider = window.Moralis;
